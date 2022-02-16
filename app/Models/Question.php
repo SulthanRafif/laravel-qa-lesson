@@ -10,6 +10,11 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'title',
         'body',
@@ -24,5 +29,17 @@ class Question extends Model
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function getUrlAttribute()
+    {
+        return route("questions.show", $this->id);
+
+        return '#';
+    }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }
