@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\QuestionController;
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
