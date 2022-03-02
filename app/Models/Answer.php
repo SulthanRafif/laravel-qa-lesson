@@ -24,6 +24,11 @@ class Answer extends Model
         return $this->body;
     }
 
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
     public static function boot()
     {
         parent::boot();
