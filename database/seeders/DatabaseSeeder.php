@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,7 +20,10 @@ class DatabaseSeeder extends Seeder
             $user->questions()
                 ->saveMany(
                     Question::factory(rand(1, 5))->make()
-                );
+                )
+                ->each(function ($question) {
+                    $question->answers()->saveMany(Answer::factory(rand(1, 5))->make());
+                });
         });
     }
 }
